@@ -1,0 +1,74 @@
+{
+  "name": "nestoria",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "check-engines": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json",
+    "ci": "jest tests/unit --testPathPattern='tests/unit' --forceExit true --maxWorkers 2",
+    "clean": "rimraf build",
+    "coverage": "jest tests --collectCoverage",
+    "dev": "DEBUG=nestoria:* ENVIRONMENT=development node build/app.js",
+    "docker-debug": "docker-compose up",
+    "prebuild": "npm run check-engines",
+    "start": "DEBUG=nestoria:* ENVIRONMENT=production node build/app.js",
+    "test": "jest tests",
+    "watch": "tsc --watch"
+  },
+  "engines": {
+    "node": "8.10",
+    "npm": "5.6.x"
+  },
+  "devEngines": {
+    "node": "8.10",
+    "npm": "5.6.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felixramirezgarcia/nestoria.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felixramirezgarcia/nestoria/issues"
+  },
+  "homepage": "https://github.com/felixramirezgarcia/nestoria#readme",
+  "dependencies": {
+    "debug": "^3.1.0",
+    "mongoose": "^5.2.10"
+  },
+  "devDependencies": {
+    "@types/debug": "0.0.30",
+    "@types/jest": "^23.3.1",
+    "@types/mongoose": "^5.2.7",
+    "fbjs-scripts": "^0.8.3",
+    "jest": "^23.5.0",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/tests/jest-setup.ts",
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  }
+}
