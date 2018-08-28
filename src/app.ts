@@ -1,25 +1,31 @@
+// Native.
+import * as path from 'path';
+
 // Package.
 import * as debug from 'debug';
 
 // Internal.
-import { Config } from './lib/Config';
+import { Crawler } from './controllers';
+import { Helper } from './lib/Helper';
 
 // Code.
 const debugInfo = debug('nestoria:info:app');
+const debugError = debug('nestoria:error:app');
+
 async function main() {
-  debugInfo(Config.getEnvironment());
-  process.once('exit', () => {
-    debugInfo('exit');
-  });
-  process.once('SIGINT', () => {
-    debugInfo('SIGINT');
-  });
-  process.once('SIGTERM', () => {
-    debugInfo('SIGTERM');
-  });
-  process.on('uncaughtException', () => {
-    debugInfo('uncaughtException');
-  });
+  debugInfo('starting to parse locations');
+
+  try {
+    const places = Helper.readFileLines(path.join(__dirname, '..', 'data', 'places.txt'));
+
+    debugInfo('crawling...');
+    const crawler = Crawler.create();
+    for (const place of places) {
+      crawler.processPlace(place);
+    }
+  } catch (err) {
+    debugError(err);
+  }
 }
 
 main();
