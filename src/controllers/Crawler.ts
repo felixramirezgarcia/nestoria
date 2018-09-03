@@ -1,4 +1,5 @@
 // Package.
+import * as debug from 'debug';
 import * as querystring from 'querystring';
 import { Response, Headers, get } from 'request';
 
@@ -6,6 +7,9 @@ import { Response, Headers, get } from 'request';
 import { NestoriaAPI } from '../lib/NestoriaAPI';
 
 // Code.
+const debugVerbose = debug('nestoria:verbose:crawler');
+const debugError = debug('nestoria:error:crawler');
+
 export interface RequestOptions {
   headers: Headers;
   port: number;
@@ -43,7 +47,6 @@ export class Crawler {
       if (!res.body || res.statusCode !== 200) {
         return;
       }
-
       // after retrieve a place retrieve all its content through pagination
       const totalPages: number = res.body.total_pages;
       const urls: string[] = [];
@@ -53,11 +56,11 @@ export class Crawler {
 
       const reqPromises = this.promisifyRequests(urls);
       const resArr = await Promise.all(reqPromises);
-      console.log(resArr);
+      debugVerbose(resArr);
 
       // TODO: save the results
     } catch (err) {
-      console.error(err);
+      debugError(err);
     }
   }
 
