@@ -36,6 +36,7 @@
   "homepage": "https://github.com/felixramirezgarcia/nestoria#readme",
   "dependencies": {
     "debug": "^3.1.0",
+    "lodash": "^4.17.10",
     "mongoose": "^5.2.10",
     "querystring": "^0.2.0",
     "request": "^2.88.0"
@@ -43,6 +44,7 @@
   "devDependencies": {
     "@types/debug": "0.0.30",
     "@types/jest": "^23.3.1",
+    "@types/lodash": "^4.14.116",
     "@types/mongoose": "^5.2.7",
     "@types/request": "^2.47.1",
     "fbjs-scripts": "^0.8.3",
@@ -55,7 +57,7 @@
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/tests/jest-setup.ts",
     "transform": {
-      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": [
