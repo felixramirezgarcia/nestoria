@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Repository create should create a new entry 1`] = `
+Object {
+  "test": 1,
+}
+`;
+
+exports[`Repository delete should delete the updated entry 1`] = `
+Object {
+  "test": 43,
+}
+`;
+
+exports[`Repository find should find an entry by its id 1`] = `
+Object {
+  "test": 1,
+}
+`;
+
+exports[`Repository find should find an entry using its attributes 1`] = `
+Object {
+  "test": 1,
+}
+`;
+
+exports[`Repository find should find whatever according the query conditions 1`] = `
+Array [
+  Object {
+    "test": 1,
+  },
+  Object {
+    "test": 2,
+  },
+  Object {
+    "test": 3,
+  },
+]
+`;
+
+exports[`Repository find should retrieve all the existent entries 1`] = `
+Array [
+  Object {
+    "test": 1,
+  },
+  Object {
+    "test": 2,
+  },
+  Object {
+    "test": 3,
+  },
+]
+`;
+
+exports[`Repository update should update an entry by its id 1`] = `
+Object {
+  "test": 43,
+}
+`;
