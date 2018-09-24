@@ -41,17 +41,17 @@ export class Crawler {
         port: 80,
       };
 
-      const req = this.doRequest(NestoriaAPI.searchPlace(escapedPlace), options);
+      const req = this.doRequest(NestoriaAPI.paginatePlace(escapedPlace, 0), options);
       const res: Response = await req;
 
       if (!res.body || res.statusCode !== 200) {
         return;
       }
       // after retrieve a place retrieve all its content through pagination
-      const totalPages: number = res.body.total_pages;
+      const totalPages: number = res.body.response.total_pages;
       const urls: string[] = [];
       for (let i: number = 1; i <= totalPages; i++) {
-        urls.push(NestoriaAPI.paginatePlace(i));
+        urls.push(NestoriaAPI.paginatePlace(escapedPlace, i));
       }
 
       const reqPromises = this.promisifyRequests(urls);
@@ -64,7 +64,7 @@ export class Crawler {
     }
   }
 
-  private promisifyRequests(urls: string[]): Array<Promise<Response>> {
+  private promisifyRequests(urls: string[]): Array<PromiseLike<Response>> {
     const self = this;
     return urls.map(url => self.doRequest(url));
   }
