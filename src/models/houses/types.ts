@@ -35,7 +35,7 @@ export interface HouseType {
   thumbWidth: number;
   title: string;
   updatedInDays: number;
-  updatedOmDaysFormatted: string;
+  updatedInDaysFormatted: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

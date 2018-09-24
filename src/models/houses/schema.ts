@@ -35,7 +35,7 @@ const definitions: SchemaDefinition = {
   thumbWidth: { type: Number, required: true },
   title: { type: String, required: true },
   updatedInDays: { type: Number, required: true },
-  updatedOmDaysFormatted: { type: String, required: true },
+  updatedInDaysFormatted: { type: String, required: true },
 };
 const options: SchemaOptions = {
   timestamps: true,

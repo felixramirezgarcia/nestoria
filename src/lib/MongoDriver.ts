@@ -67,6 +67,7 @@ export default class MongoDriver {
         bufferMaxEntries: 0,
         // Never stop trying to reconnect
         reconnectTries: Number.MAX_VALUE,
+        useNewUrlParser: true,
       };
 
       try {
