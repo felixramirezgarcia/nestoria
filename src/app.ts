@@ -21,7 +21,7 @@ async function main() {
     debugInfo('crawling...');
     const crawler = Crawler.create();
     for (const place of places) {
-      crawler.processPlace(place);
+      await crawler.processPlace(place);
     }
   } catch (err) {
     debugError(err);
