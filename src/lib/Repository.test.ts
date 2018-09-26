@@ -4,8 +4,8 @@ import { Helper } from './Helper';
 import { keysToOmit } from './mocks/Constants';
 
 // Mocks.
-import { mockConnection } from './mocks/mongodriver';
-import { TestModel, TestRepository, TestDocument, mockedTestItem } from './mocks/repository';
+import { mockConnection } from './mocks/MongoDriver';
+import { TestModel, TestRepository, TestDocument, mockedTestItem } from './mocks/Repository';
 
 // Code.
 describe('Repository', () => {
