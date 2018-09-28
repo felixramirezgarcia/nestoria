@@ -7,6 +7,7 @@ import { NestoriaAPI, NestoriaBody } from '../lib/NestoriaAPI';
 
 // Internal.
 import { HouseModel } from '../models';
+import { HouseType } from '../models/houses/types';
 
 // Code.
 const debugVerbose = debug('nestoria:verbose:crawler');
@@ -36,7 +37,10 @@ export class Crawler {
 
   public async processPlace(place: string) {
     debugVerbose(`processPlace input: ${place}`);
+
     const escapedPlace = querystring.escape(place);
+    let insertedRecords = 0;
+    let totalRecords = 0;
     try {
       const options: RequestOptions = {
         headers: {
@@ -65,8 +69,9 @@ export class Crawler {
       const resArr = await Promise.all(reqPromises);
       for (res of resArr) {
         const body = JSON.parse(res.body) as NestoriaBody;
+        const houses: HouseType[] = [];
         for (const item of body.response.listings) {
-          await this.houseModel.createHouse({
+          houses.push({
             bathroomNumber: item.bathroom_number,
             bedroomNumber: item.bedroom_number,
             catSpaces: 0,
@@ -102,12 +107,16 @@ export class Crawler {
             updatedInDaysFormatted: item.updated_in_days_formatted,
           });
         }
+
+        const records = await this.houseModel.createHouses(houses);
+        insertedRecords += records.result.ok;
+        totalRecords += records.result.n;
       }
     } catch (err) {
       debugError(err);
     }
 
-    debugVerbose(`processPlace done`);
+    debugVerbose(`processPlace done (${insertedRecords}/${totalRecords})`);
   }
 
   private promisifyRequests(urls: string[]): Array<PromiseLike<Response>> {
