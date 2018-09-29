@@ -6,6 +6,7 @@ import MongoDriver, { MongoModel } from '../../lib/MongoDriver';
 import { HouseDocument, HouseType } from './types';
 import { HouseRepository } from './repository';
 import { schema } from './schema';
+import { InsertWriteOpResult } from 'mongodb';
 
 // Code.
 const debugError = debug('nestoria:error:model:house');
@@ -34,6 +35,26 @@ export class HouseModel extends MongoModel<HouseDocument> {
 
     try {
       output = await this.repo.create(entry);
+    } catch (err) {
+      debugError(err);
+    }
+
+    return output;
+  }
+
+  public async createHouses(data: HouseType[]): Promise<InsertWriteOpResult> {
+    let output = null;
+
+    const entries = [];
+
+    for (const item of data) {
+      entries.push({
+        ...item,
+      } as HouseDocument);
+    }
+
+    try {
+      output = await this.repo.bulkCreate(entries);
     } catch (err) {
       debugError(err);
     }

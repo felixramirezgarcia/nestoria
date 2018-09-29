@@ -9,10 +9,10 @@
     "ci": "jest tests/unit --testPathPattern='tests/unit' --forceExit true --maxWorkers 2",
     "clean": "rimraf build",
     "coverage": "jest tests --collectCoverage",
-    "dev": "DEBUG=nestoria:* ENVIRONMENT=development node build/app.js",
+    "dev": "DEBUG=nestoria:*,driver:* ENVIRONMENT=development node build/app.js",
     "docker-debug": "docker-compose up",
     "prebuild": "npm run check-engines",
-    "start": "DEBUG=nestoria:* ENVIRONMENT=production node build/app.js",
+    "start": "DEBUG=nestoria:*,driver:* ENVIRONMENT=production node build/app.js",
     "test": "jest tests",
     "watch": "tsc --watch"
   },
