@@ -14,17 +14,19 @@ $ npm run build && npm start
 $ npm run build && npm run dev
 ```
 
-### Tests
+### Generate places
 
-If you want to check the unitary tests simply run the next command:
+Each time you want to add new places to `data/places.txt` to increment the crawl possibilities you should execute for convinience the next script.
 
-```bash
-$ npm run test
+```
+$ ./scripts/add_place.sh my-new-place
 ```
 
-Or more precisely:
+### Tests
 
-```bash
-$ npx jest tests/*
-$ npx jest tests/index.test.ts
+The tests are distributed along the folders close each file to test. You can select the subset of test to run simply:
+
+```
+$ npx jest src
+$ npx jest src/lib
 ```
