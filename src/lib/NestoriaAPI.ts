@@ -71,7 +71,7 @@ export interface NestoriaBodyResItemList {
   lister_name: string;
   lister_url: string;
   listing_type: string;
-  location_accuracy: 9;
+  location_accuracy: number;
   longitude: number;
   price: number;
   price_currency: string;

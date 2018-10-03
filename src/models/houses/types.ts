@@ -5,7 +5,7 @@ import { Document } from 'mongoose';
 export interface HouseType {
   bathroomNumber: number;
   bedroomNumber: number;
-  catSpaces: number;
+  carSpaces: number;
   comission: number;
   constructionYear: number;
   datasourceName: string;

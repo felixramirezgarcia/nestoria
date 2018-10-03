@@ -74,7 +74,7 @@ export class Crawler {
           houses.push({
             bathroomNumber: item.bathroom_number,
             bedroomNumber: item.bedroom_number,
-            catSpaces: 0,
+            carSpaces: item.car_spaces,
             comission: item.commission,
             constructionYear: item.construction_year,
             datasourceName: item.datasource_name,
