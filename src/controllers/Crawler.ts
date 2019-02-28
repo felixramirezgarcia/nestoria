@@ -64,7 +64,8 @@ export class Crawler {
       for (let i: number = 1; i <= totalPages; i++) {
         urls.push(NestoriaAPI.paginatePlace(escapedPlace, i));
       }
-
+      
+      const today = new Date();
       const reqPromises = this.promisifyRequests(urls);
       const resArr = await Promise.all(reqPromises);
       for (res of resArr) {
@@ -105,6 +106,9 @@ export class Crawler {
             title: item.title,
             updatedInDays: item.updated_in_days,
             updatedInDaysFormatted: item.updated_in_days_formatted,
+            get_day: today.getDate(),
+            get_month: today.getMonth()+1,
+            get_year: today.getFullYear(),
           });
         }
 

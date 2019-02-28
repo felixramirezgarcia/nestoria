@@ -61,7 +61,7 @@ export default class MongoDriver {
   public async connect(): Promise<mongoose.Mongoose> {
     if (this.connection == null) {
       const options: mongoose.ConnectionOptions = {
-        keepAlive: 300000,
+        keepAlive: true,
         connectTimeoutMS: 30000,
         // If not connected, return errors immediately rather than waiting for reconnect
         bufferMaxEntries: 0,

@@ -1,5 +1,5 @@
 // Package.
-import { Document, Model, Types, Query } from 'mongoose';
+import { Document, Model, Types } from 'mongoose';
 import { InsertWriteOpResult } from 'mongodb';
 
 // Code.
@@ -73,18 +73,6 @@ export class RepositoryBase<T extends Document> implements Read<T>, Write<T> {
     try {
       output = (await this._model.findById(id)) as T;
       await this._model.remove({ _id: id });
-    } catch (err) {
-      throw err;
-    }
-
-    return output;
-  }
-
-  public async deleteAll(): Promise<Query<BulkDelete>> {
-    let output = null;
-
-    try {
-      output = await this._model.remove({});
     } catch (err) {
       throw err;
     }

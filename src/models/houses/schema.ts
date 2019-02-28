@@ -36,6 +36,9 @@ const definitions: SchemaDefinition = {
   title: { type: String, required: false },
   updatedInDays: { type: Number, required: false },
   updatedInDaysFormatted: { type: String, required: false },
+  get_day: { type: Number, required: false },
+  get_month: { type: Number, required: false },
+  get_year: { type: Number, required: false },
 };
 const options: SchemaOptions = {
   timestamps: true,

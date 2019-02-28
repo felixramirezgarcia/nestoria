@@ -38,6 +38,9 @@ export interface HouseType {
   updatedInDaysFormatted: string;
   createdAt?: Date;
   updatedAt?: Date;
+  get_day: number;
+  get_month: number;
+  get_year: number;
 }
 
 export interface HouseDocument extends HouseType, Document {}
